@@ -9,6 +9,7 @@ const tossr = require('tossr')
  * @prop {boolean} ssr                                    - enable SSR for routes not resolved in assetsDir.
  * @prop {boolean} silent                                 - quiet console.log.
  * @prop {Partial<tossr.Config>} ssrOptions                  - options to pass to ssr
+ * @prop {Object[]} customMiddlewares
  */
 
   /**
@@ -25,7 +26,8 @@ const config = {
     port: "5000",
     ssr: false,
     silent: false,
-    ssrOptions: {}
+    ssrOptions: {},
+    customMiddlewares: [],
 }
 
 module.exports = config

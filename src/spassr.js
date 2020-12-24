@@ -17,7 +17,8 @@ module.exports.spassr = async function (options) {
         ssr,
         entrypoint,
         script,
-        ssrOptions = {}
+        ssrOptions = {},
+        customMiddlewares = []
     } = options
 
     if (!await isPortFree(port)) {
@@ -29,6 +30,8 @@ module.exports.spassr = async function (options) {
 
     const assetsDirs = Array.isArray(assetsDir) ? assetsDir : assetsDir.split(',')
     assetsDirs.forEach(dir => server.use(express.static(dir)))
+
+    if (customMiddlewares.length) server.use(...customMiddlewares)
 
     if (!ssr)
         server.get('*', (req, res) =>
